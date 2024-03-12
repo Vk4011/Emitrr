@@ -1,0 +1,10 @@
+html{
+  color-scheme: dark light;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
