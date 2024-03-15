@@ -58,7 +58,8 @@
 
    button {
     position: relative;
-    padding: 10px 20px;
+    width: 120px;
+    height: 40px;
     border-radius: 7px;
     border: 1px solid rgb(61, 106, 255);
     font-size: 14px;
