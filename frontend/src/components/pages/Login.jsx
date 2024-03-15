@@ -19,15 +19,13 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-      
         console.log(data);
-       
+
         if (data.status === "Success") {
-          navigate("/home"); 
+          navigate("/home");
         }
       })
       .catch((error) => {
-       
         console.error("Error:", error);
       });
   };
@@ -72,7 +70,12 @@ function Login() {
               <span className="absolute top-0 left-0 w-full h-full bg-white opacity-0"></span>
             </button>
           </center>
-          <Link to="/signup" className="signup">Signup</Link>
+          <center>
+            <br />
+            <Link to="/signup" className="text-blue-200">
+              Signup
+            </Link>
+          </center>
         </form>
       </div>
     </>

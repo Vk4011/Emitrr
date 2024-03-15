@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../baseUrl";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios.post(`${baseUrl}/signup`, { username, email, password })
       .then((res) => {
-        console.log(res.data);
+        const { data } = res; // Destructure data from the response
+        if (data.status === "Success") {
+          navigate("/home"); 
+        }
       })
       .catch((err) => {
         console.error(err); // Log errors
@@ -71,6 +75,11 @@ function SignUp() {
               <span className="absolute top-0 left-0 w-full h-full bg-white opacity-0"></span>
             </button>
           </center>
+          <center>
+            <br />
+          <Link to="/login" className="text-blue-200">Login</Link>
+          </center>
+      
         </form>
       </div>
     </>
