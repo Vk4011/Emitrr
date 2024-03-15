@@ -32,18 +32,10 @@ function Playground() {
         if (defuserCount <= 0) {
           console.log(`\n\t BOOM : 💣 \n`);
           console.log("Game over");
+          return; // Exiting the function immediately after game over
         } else {
-          SetDefusserCount((p) => {
-            p - 1;
-          });
-          console.log("bomb diffused..");
-          console.log("Card drawn:", inHandCard);
-          console.log(`\n\t[ ${deck.slice(0, -1)} ]\n`);
-          setDeck((prevDeck) => prevDeck.slice(0, -1));
-          setFrontCard((prevFrontCard) => prevFrontCard - 1);
-          if (deck.length === 1) {
-            console.log("\n\t You win the game!");
-          }
+          SetDefusserCount((prevCount) => prevCount - 1); // Decreasing defuser count
+          console.log("Bomb defused..");
         }
         break;
       case "🔀":
@@ -52,30 +44,24 @@ function Playground() {
         console.log("\n\t New Deck ");
         generateDeck();
         setFrontCard(4);
-        break;
+        return; // Exiting the function after shuffling
       case "🙅‍♂️":
-        SetDefusserCount((p) => {
-          p + 1;
-        });
+        SetDefusserCount((prevCount) => prevCount + 1); // Increasing defuser count
         console.log("Defuser drawn:", inHandCard);
         console.log("\n\t Checking next card...");
-
         console.log("\n\t Game continues.");
-        console.log(`\n\t[ ${deck.slice(0, -1)} ]\n`);
-        setDeck((prevDeck) => prevDeck.slice(0, -1));
-        setFrontCard((prevFrontCard) => prevFrontCard - 1);
-
         break;
       default:
         console.log("Card drawn:", inHandCard);
-        console.log(`\n\t[ ${deck.slice(0, -1)} ]\n`);
-        setDeck((prevDeck) => prevDeck.slice(0, -1));
-        setFrontCard((prevFrontCard) => prevFrontCard - 1);
         if (deck.length === 1) {
           console.log("\n\t You win the game!");
         }
         break;
     }
+
+    console.log(`\n\t[ ${deck.slice(0, -1)} ]\n`);
+    setDeck((prevDeck) => prevDeck.slice(0, -1));
+    setFrontCard((prevFrontCard) => prevFrontCard - 1);
   };
 
   return (
@@ -85,7 +71,16 @@ function Playground() {
           <ul className="card-list">
             {deck.map((card, index) => (
               <li className="card-list__item }" key={index}>
-                <div className="card">{card}</div>
+                <div className="card">
+                  <div className="card-inner">
+                    <div className="card-front">
+                      <p className="text-[5rem]">♦️</p>
+                    </div>
+                    <div className="card-back">
+                      <p className="text-[6rem]">{card}</p>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>

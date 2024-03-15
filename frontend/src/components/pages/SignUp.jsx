@@ -14,13 +14,13 @@ function SignUp() {
 
     axios.post(`${baseUrl}/signup`, { username, email, password })
       .then((res) => {
-        const { data } = res; // Destructure data from the response
+        const { data } = res; 
         if (data.status === "Success") {
           navigate("/home"); 
         }
       })
       .catch((err) => {
-        console.error(err); // Log errors
+        console.error(err); 
       });
   };
 
