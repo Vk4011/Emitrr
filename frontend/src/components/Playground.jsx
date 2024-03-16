@@ -68,6 +68,9 @@ function Playground() {
 
   return (
     <>
+    <center>
+    <h1 className="text-3xl text-blue-500 text-bold">{localStorage.getItem('username')} !</h1>
+    </center>
       <div className="container">
         <div clas
         sN
