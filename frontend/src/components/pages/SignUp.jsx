@@ -4,7 +4,7 @@ import { baseUrl } from "../../baseUrl";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -12,15 +12,18 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`${baseUrl}/signup`, { username, email, password })
+    axios
+      .post(`${baseUrl}/signup`, { name, email, password })
       .then((res) => {
-        const { data } = res; 
-        if (data.status === "Success") {
-          navigate("/home"); 
+        const { data } = res;
+        console.log(data);
+        if (res.status === 200) {
+          navigate("/home");
+          
         }
       })
       .catch((err) => {
-        console.error(err); 
+        console.error(err);
       });
   };
 
@@ -34,12 +37,12 @@ function SignUp() {
           <div className="relative">
             <input
               type="text"
-              name="username"
+              name="name"
               required
               className="w-full py-2 text-white text-lg border-b border-white bg-transparent focus:outline-none focus:border-gray-400"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="relative">
@@ -77,9 +80,10 @@ function SignUp() {
           </center>
           <center>
             <br />
-          <Link to="/login" className="text-blue-200">Login</Link>
+            <Link to="/login" className="text-blue-200">
+              Login
+            </Link>
           </center>
-      
         </form>
       </div>
     </>

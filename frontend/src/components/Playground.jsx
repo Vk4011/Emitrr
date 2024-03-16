@@ -32,6 +32,7 @@ function Playground() {
         if (defuserCount <= 0) {
           console.log(`\n\t BOOM : 💣 \n`);
           console.log("Game over");
+          window.alert("\n\t Game over \n\t 💣 BOOM 💣 \n\t Game over");
           return; // Exiting the function immediately after game over
         } else {
           SetDefusserCount((prevCount) => prevCount - 1); // Decreasing defuser count
@@ -55,6 +56,7 @@ function Playground() {
         console.log("Card drawn:", inHandCard);
         if (deck.length === 1) {
           console.log("\n\t You win the game!");
+          window.alert("\n\t You win the game!");
         }
         break;
     }
@@ -67,7 +69,9 @@ function Playground() {
   return (
     <>
       <div className="container">
-        <div className="card-wrapper">
+        <div clas
+        sN
+        me="card-wrapper">
           <ul className="card-list">
             {deck.map((card, index) => (
               <li className="card-list__item }" key={index}>

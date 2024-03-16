@@ -35,7 +35,8 @@ app.get('/', (req, res) => res.send('Server is running..!'));
 // Register User
 app.post('/signup', (req, res) => {
     UserModel.create(req.body)
-      .then((user) => res.json(user))
+      .then((user) => res.status(200).json(user))
+
       .catch((err) => res.status(500).json({ error: err.message }));
 });
 
@@ -46,7 +47,7 @@ app.post('/login', (req, res) => {
       .then((user) => {
         if (user) {
           if (user.password === password) {
-            res.json({ status: 'Success' });
+            res.json({ status: 'Success' ,user: user });
           } else {
             res.json({ status: 'Error', message: 'The password is incorrect' });
           }
